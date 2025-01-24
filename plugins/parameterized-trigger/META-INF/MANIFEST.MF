@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Jenkins Parameterized Trigger plugin
+Specification-Version: 0.0
+Implementation-Title: Jenkins Parameterized Trigger plugin
+Implementation-Version: 840.v3c7d4a_a_5e6c7
+Plugin-Class: hudson.plugins.parameterizedtrigger.Plugin
+Group-Id: org.jenkins-ci.plugins
+Artifact-Id: parameterized-trigger
+Short-Name: parameterized-trigger
+Long-Name: Jenkins Parameterized Trigger plugin
+Url: https://github.com/jenkinsci/parameterized-trigger-plugin
+Plugin-Version: 840.v3c7d4a_a_5e6c7
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Dependencies: conditional-buildstep:1.4.3;resolution:=optional,ma
+ trix-project:840.v812f627cb_578,promoted-builds:965.vcda_c6a_e0998f;res
+ olution:=optional,script-security:1369.v9b_98a_4e95b_2d,subversion:1281
+ .vc8837f91a_07a_;resolution:=optional
+Plugin-Developers: 
+Plugin-License-Name: The MIT License (MIT)
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/parameterized
+ -trigger-plugin.git
+Plugin-ScmTag: 3c7d4aa5e6c7161d1dea7c6f29b37a70d234172c
+Plugin-ScmUrl: https://github.com/jenkinsci/parameterized-trigger-plugin
+Implementation-Build: 3c7d4aa5e6c7161d1dea7c6f29b37a70d234172c
+

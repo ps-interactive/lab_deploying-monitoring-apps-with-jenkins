@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jvnet.hudson.plugins' artifactId='slave-status' version='56.v1798df8ff586'><l:dependency name='Agent Status' groupId='org.jvnet.hudson.plugins' artifactId='slave-status' version='56.v1798df8ff586' url='http://wiki.jenkins-ci.org/display/JENKINS/slave-status'><l:description>The Jenkins Plugins Parent POM Project</l:description><l:license name='The MIT license' url='https://github.com/jenkinsci/slave-status-plugin/raw/master/LICENSE.txt'/></l:dependency></l:dependencies>

@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 17
+Specification-Title: Docker plugin
+Specification-Version: 1.8
+Implementation-Title: Docker plugin
+Implementation-Version: 1.8.0
+Group-Id: io.jenkins.docker
+Artifact-Id: docker-plugin
+Short-Name: docker-plugin
+Long-Name: Docker plugin
+Url: https://github.com/jenkinsci/docker-plugin
+Plugin-Version: 1.8.0
+Hudson-Version: 2.479.1
+Jenkins-Version: 2.479.1
+Plugin-Dependencies: ionicons-api:74.v93d5eb_813d5f,instance-identity:20
+ 1.vd2a_b_5a_468a_a_6,workflow-api:1336.vee415d95c521;resolution:=option
+ al,workflow-step-api:678.v3ee58b_469476;resolution:=optional,workflow-s
+ upport:936.v9fa_77211ca_e1;resolution:=optional,bouncycastle-api:2.30.1
+ .78.1-248.ve27176eb_46cb_,cloud-stats:336.v788e4055508b_,docker-commons
+ :445.v6b_646c962a_94,docker-java-api:3.4.1-96.v77147a_de67f8,durable-ta
+ sk:581.v299a_5609d767,ssh-slaves:2.1010.v64ec48721231,token-macro:400.v
+ 35420b_922dcb_,pipeline-model-extensions:2.2218.v56d0cda_37c72;resoluti
+ on:=optional
+Plugin-Developers: Nigel Magnay:magnayn:,Nicolas De Loof:ndeloof:,Peter 
+ Darton:pjdarton:
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/docker-plugin
+ .git
+Plugin-ScmTag: docker-plugin-1.8.0
+Plugin-ScmUrl: https://github.com/jenkinsci/docker-plugin
+Implementation-Build: a61d418c6e367c124795d4b1564f1dc63ef15fef
+
