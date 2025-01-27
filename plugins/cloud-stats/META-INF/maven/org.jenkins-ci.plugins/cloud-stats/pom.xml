@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>cloud-stats</artifactId>
-  <version>336.v788e4055508b_</version>
+  <version>377.vd8a_6c953e98e</version>
   <packaging>hpi</packaging>
   <name>Cloud Statistics Plugin</name>
   <description>The Jenkins Plugins Parent POM Project</description>
@@ -16,22 +16,10 @@
       <url>https://opensource.org/licenses/MIT</url>
     </license>
   </licenses>
-  <developers>
-    <developer>
-      <id>olivergondza</id>
-      <name>Oliver Gondža</name>
-      <email>ogondza@gmail.com</email>
-    </developer>
-    <developer>
-      <id>markewaite</id>
-      <name>Mark Waite</name>
-      <email>mark.earl.waite@gmail.com</email>
-    </developer>
-  </developers>
   <scm>
     <connection>scm:git:https://github.com/jenkinsci/cloud-stats-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/cloud-stats-plugin.git</developerConnection>
-    <tag>788e4055508b0d56d7ba251f55441cfa7a230de4</tag>
+    <tag>d8a6c953e98e0e335f99ea0d658c45de9f4f171c</tag>
     <url>https://github.com/jenkinsci/cloud-stats-plugin</url>
   </scm>
   <distributionManagement>
@@ -49,7 +37,7 @@
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.51</version>
+        <version>3.60</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>ldap</artifactId>
-  <version>770.vb_455e934581a_</version>
+  <version>776.vddf3e325103b_</version>
   <packaging>hpi</packaging>
   <name>LDAP Plugin</name>
   <description>The Jenkins Plugins Parent POM Project</description>
@@ -20,7 +20,7 @@
   <scm>
     <connection>scm:git:https://github.com/jenkinsci/ldap-plugin.git</connection>
     <developerConnection>scm:git:https://github.com/jenkinsci/ldap-plugin.git</developerConnection>
-    <tag>b455e934581aefc48184918fe1a1c0d5e331d3a9</tag>
+    <tag>ddf3e325103bd5574a94e414c6fa000e3315cdc6</tag>
     <url>https://github.com/jenkinsci/ldap-plugin</url>
   </scm>
   <distributionManagement>
@@ -73,7 +73,7 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>mailer</artifactId>
-      <version>488.v0c9639c1a_eb_3</version>
+      <version>489.vd4b_25144138f</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
@@ -82,7 +82,7 @@
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
-        <version>3.59</version>
+        <version>3.60</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

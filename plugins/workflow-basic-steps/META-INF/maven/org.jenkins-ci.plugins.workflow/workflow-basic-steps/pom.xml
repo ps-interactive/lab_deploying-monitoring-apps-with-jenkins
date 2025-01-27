@@ -27,7 +27,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jenkins-ci.plugins.workflow</groupId>
   <artifactId>workflow-basic-steps</artifactId>
-  <version>1074.va_2fc14effd78</version>
+  <version>1079.vce64b_a_929c5a_</version>
   <packaging>hpi</packaging>
   <name>Pipeline: Basic Steps</name>
   <description>The Jenkins Plugins Parent POM Project</description>
@@ -42,7 +42,7 @@
   <scm>
     <connection>scm:git:https://github.com/jenkinsci/workflow-basic-steps-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/workflow-basic-steps-plugin.git</developerConnection>
-    <tag>a2fc14effd78362242eba42dc1495eddcfd9d80f</tag>
+    <tag>ce64ba929c5af0bc42bc3d00fe4debea25a6ba5f</tag>
     <url>https://github.com/jenkinsci/workflow-basic-steps-plugin</url>
   </scm>
   <distributionManagement>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-step-api</artifactId>
-      <version>678.v3ee58b_469476</version>
+      <version>686.v603d058a_e148</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -91,6 +91,12 @@
       <artifactId>apache-httpcomponents-client-4-api</artifactId>
       <version>4.5.14-208.v438351942757</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-durable-task-step</artifactId>
+      <version>1398.vf6c9e89e5988</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
   <build>
