@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-JENKINS_ADMIN_PASSWD=$(cat /var/jenkins_home/secrets/initialAdminPassword)
+JENKINS_ADMIN_PASSWD=$(sudo cat /home/pslearner/jenkins_home/secrets/initialAdminPassword)
 
 ## Setting up the lab and retrieving the credentials.
 
@@ -15,11 +15,11 @@ git config --global user.name "PSLearner"
 
 echo "Your Git configs for user email and name have been set to email - pslearner@example.com and name - PSLearner"
 
-# Ensure you copy your SSH key to the git user to allow passwordless git actions (like push, pull etc)
-echo "Use 'ssh-copy-id git@localhost' to copy your ssh key to the git user"
-
 # Credentials listing
 # Git
+echo "++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "++         LAB DETAILS/CREDENTIALS            ++"
+echo "++++++++++++++++++++++++++++++++++++++++++++++++   
 echo "Git user password is 'git'"
 echo "Jenkins URL is 'http://localhost:3000'"
 echo "Prometheus URL is 'http://localhost:9090'"
