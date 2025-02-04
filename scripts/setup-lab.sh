@@ -20,6 +20,7 @@ echo "Your Git configs for user email and name have been set to email - pslearne
 echo "++++++++++++++++++++++++++++++++++++++++++++++++"
 echo "++         LAB DETAILS/CREDENTIALS            ++"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++"   
+echo ""
 echo "Git user password is 'git'"
 echo "Jenkins URL is 'http://localhost:3000'"
 echo "Prometheus URL is 'http://localhost:9090'"
