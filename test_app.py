@@ -1,10 +1,17 @@
 import pytest
-from flask import Flask, url_for
+from app import app
+
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True
+    return app.test_client()
 
 def test_index(client):
     response = client.get('/')
-    assert b'Welcome to the Guest Book!' in response.data
+    assert response.status_code == 200
+    assert response.data == b"Welcome to the Guest Book!"
 
 def test_add_guest(client):
-    response = client.post('/add/Guest1')
-    assert b"Added Guest1 to the guestbook" in response.data
+    response = client.get('/add/testuser')
+    assert response.status_code == 200
+    assert b"Added testuser to the guestbook" in response.data
