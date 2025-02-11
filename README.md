@@ -15,6 +15,8 @@ Change into the directory of the cloned repo, install the application requiremen
 
 ```
 cd lab_deploying-monitoring-apps-with-jenkins
-pip install -r requirements.txt
-python app.py
+docker build -t webserver .
+docker run -d --name mywebserver -p 8080:80 
 ```
+
+Visit http://localhost:8080
