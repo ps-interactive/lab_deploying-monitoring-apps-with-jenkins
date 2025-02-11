@@ -1,12 +1,21 @@
 pipeline {
     agent any
     environment {
-        DEPLOY_SERVER = 'jenkins@localhost'
+        DEPLOY_SERVER = 'user@server'
         APP_NAME = 'flask-app'
         BLUE_PORT = '5001'
         GREEN_PORT = '5002'
     }
+    options {
+        disableConcurrentBuilds()
+    }
     stages {
+        stage('Cleanup') {
+            steps {
+                echo 'Cleaning up workspace...'
+                deleteDir()
+            }
+        }
         stage('Prepare') {
             steps {
                 echo 'Installing dependencies...'
