@@ -18,14 +18,15 @@ pipeline {
         }
         stage('Prepare') {
             steps {
-                echo 'Installing dependencies...'
-                sh 'pip install -r requirements.txt'
+                echo 'Setting up Python virtual environment and installing dependencies...'
+                sh 'python -m venv venv'
+                sh 'source venv/bin/activate && pip install -r requirements.txt'
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'pytest test_app.py'
+                sh 'source venv/bin/activate && pytest test_app.py'
             }
         }
         stage('Build') {
