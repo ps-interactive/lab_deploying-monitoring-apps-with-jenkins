@@ -2,4 +2,4 @@
 FROM httpd:latest
 
 # Copy the project files 
-COPY index.html /usr/local/apache2/htdocs/index.html
+COPY index.htmll /usr/local/apache2/htdocs/index.html
