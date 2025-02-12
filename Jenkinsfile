@@ -24,7 +24,7 @@ pipeline {
                     def activeContainer = sh(script: "docker ps --filter 'name=myapp-green' --filter 'name=myapp-blue' --format '{{.Names}}'", returnStdout: true).trim()
                     def newContainer = activeContainer == 'myapp-blue' ? 'myapp-green' : 'myapp-blue'
                     echo "Deploying new container: ${newContainer}"
-                    sh "docker run -d --name ${newContainer} -p 80:80 myapp:latest"
+                    sh "docker run -d --name ${newContainer} -p 8080:80 myapp:latest"
                     echo 'Switching traffic...'
                     sh "docker stop ${activeContainer} || true"
                     sh "docker rm ${activeContainer} || true"
