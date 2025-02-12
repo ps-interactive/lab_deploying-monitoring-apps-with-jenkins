@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker image...'
-                sh 'docker builb -t myapp:latest .'
+                sh 'docker build -t myapp:latest .'
             }
         }
         stage('Deploy') {
