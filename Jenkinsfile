@@ -48,7 +48,7 @@ pipeline {
                         echo "Starting new container ${newContainer} on port 80"
                         sh "docker stop ${newContainer} || true"
 			sh "docker rm ${newContainer} || true"
-                        sh "docker run -d --name ${newContainer} -p 80:80 myapp:latest bash -c "echo 'Error' && exit 1"
+                        sh "docker run -d --name ${newContainer} -p 80:80 myapp:latest bash -c "echo 'Error' && exit 1""
                     } else {
                         // Deploy directly to port 80 if no active container
                         echo "No active container found on port 80. Deploying ${newContainer} on port 80"
