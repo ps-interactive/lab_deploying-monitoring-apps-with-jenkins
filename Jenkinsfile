@@ -16,6 +16,8 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh 'docker build -t myapp:latest .'
+                // Save the current image as the previous working image
+                sh 'docker tag myapp:latest myapp:previous'
             }
         }
         stage('Deploy') {
@@ -33,12 +35,6 @@ pipeline {
                         echo "Deploying new container: ${newContainer} on port 81"
                         sh "docker run -d --name ${newContainer} -p 81:80 myapp:latest"
 
-                        // Validate that the new container is running
-                        def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal:81", returnStdout: true).trim()
-                        if (statusCode != '200') {
-                            error "New container ${newContainer} is not healthy (status: ${statusCode}). Triggering rollback."
-                        }
-
                         // Stop and remove the old container on port 80
                         echo "Stopping and removing old container: ${activeContainer}"
                         sh "docker stop ${activeContainer} || true"
@@ -52,12 +48,19 @@ pipeline {
                         // Deploy directly to port 80 if no active container
                         echo "No active container found on port 80. Deploying ${newContainer} on port 80"
                         sh "docker run -d --name ${newContainer} -p 80:80 myapp:latest"
-
-                        // Check deployment status
-                        def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
-                        if (statusCode != '200') {
-                            error "Deployment failed with status: ${statusCode}. Triggering rollback."
-                        }
+                    }
+                }
+            }
+        }
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    // Check deployment status
+                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
+                    if (statusCode != '200') {
+                        error "Deployment failed with status: ${statusCode}. Triggering rollback."
+                    } else {
+                        echo "Deployment successful with status: ${statusCode}"
                     }
                 }
             }
@@ -68,14 +71,14 @@ pipeline {
                     def failedContainer = sh(script: "docker ps --filter 'name=myapp-green' --filter 'name=myapp-blue' --format '{{.Names}}'", returnStdout: true).trim()
                     def rollbackContainer = failedContainer == 'myapp-green' ? 'myapp-blue' : 'myapp-green'
 
-                    echo "Rolling back to previous container: ${rollbackContainer}"
+                    echo "Rolling back to previous working image."
 
                     // Stop and remove the failed container
                     sh "docker stop ${failedContainer} || true"
                     sh "docker rm ${failedContainer} || true"
 
-                    // Redeploy the previous container
-                    sh "docker start ${rollbackContainer} || docker run -d --name ${rollbackContainer} -p 80:80 myapp:latest"
+                    // Redeploy the previous working image
+                    sh "docker run -d --name ${rollbackContainer} -p 80:80 myapp:previous"
 
                     // Validate rollback container
                     def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
