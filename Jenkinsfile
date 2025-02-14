@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script {
                     // Check deployment status
-                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
+                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost", returnStdout: true).trim()
                     if (statusCode != '200') {
                         echo "Deployment failed with status: ${statusCode}. Setting build status to FAILURE."
                         BUILD_STATUS = 'FAILURE'
