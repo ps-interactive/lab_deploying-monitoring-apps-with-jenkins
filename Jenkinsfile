@@ -58,9 +58,9 @@ pipeline {
             }
         }
         stage('Rollback') {
-            when {
-                expression { return currentBuild.result == 'FAILURE' }
-            }
+           //  when{
+           //     expression { return currentBuild.result == 'FAILURE' }
+           // }
             steps {
                 script {
                     def failedContainer = sh(script: "docker ps --filter 'name=myapp-green' --filter 'name=myapp-blue' --format '{{.Names}}'", returnStdout: true).trim()
