@@ -9,7 +9,7 @@ pipeline {
 		echo 'Backing up current myapp:latest as myapp:previous if it exists ...'
 		sh '''if docker images | awk \'{print $1":"$2}\' | grep -q myapp:latest; then docker tag myapp:latest myapp:previous; fi'''
 
-                echo 'Cleaning up old Docker images...'
+                echo 'Cleaning up old Docker images...SKIPPING'
                // sh 'docker system prune -af || true'
             }
         }
