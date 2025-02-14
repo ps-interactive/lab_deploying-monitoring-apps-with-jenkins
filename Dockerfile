@@ -2,9 +2,8 @@
 FROM httpd:latest
 
 # Copy the project files 
-COPY index.html /usr/local/apache2/htdocs/index.html
+#COPY index.html /usr/local/apache2/htdocs/index.html
 
-# Simulate a failure in the container
-#HEALTHCHECK CMD ["ping", "-c", "1", "localhost"] || exit 1 
-HEALTHCHECK CMD ["touch", "/tmp/fake_file"] || exit 1
+# Comment the copy line above top simulate a failure and uncomment this line below
+COPY indx.html /usr/local/apache2/htdocs/index.html
 
