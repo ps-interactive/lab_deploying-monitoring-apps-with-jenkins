@@ -9,9 +9,6 @@ pipeline {
 		echo 'Backing up current myapp:latest as myapp:previous if it exists ...'
 		sh '''if docker images | awk \'{print $1":"$2}\' | grep -q myapp:latest; then docker tag myapp:latest myapp:previous; fi'''
 
-                echo 'Cleaning up old Docker images and container from previous deploymemnt...'
-               sh '''if docker ps -a | grep myapp | awk \'{print $13}\'; then docker stop myapp; fi'''
-               sh '''if docker ps -a | grep myapp | awk \'{print $13}\'; then docker rm myapp; fi'''
             }
         }
         stage('Test') {
