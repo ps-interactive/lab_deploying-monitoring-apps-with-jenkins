@@ -6,10 +6,11 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
+		echo 'Backing up current myapp:latest as myapp:previous if it exists ...'
+		sh 'if docker images | grep -q "myapp:latest"; then docker tag myapp:latest myapp:previous; fi'
+
                 echo 'Cleaning up old Docker images...'
                 sh 'docker system prune -af || true'
-                echo 'Backing up current myapp:latest as myapp:previous if it exists...'
-                sh 'if docker images | grep -q "myapp:latest"; then docker tag myapp:latest myapp:previous; fi'
             }
         }
         stage('Test') {
@@ -59,7 +60,7 @@ pipeline {
             steps {
                 script {
                     // Check deployment status
-                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost", returnStdout: true).trim()
+                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
                     if (statusCode != '200') {
                         echo "Deployment failed with status: ${statusCode}. Setting build status to FAILURE."
                         BUILD_STATUS = 'FAILURE'
