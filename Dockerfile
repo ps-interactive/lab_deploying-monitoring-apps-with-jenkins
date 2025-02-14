@@ -5,6 +5,6 @@ FROM httpd:latest
 COPY index.html /usr/local/apache2/htdocs/index.html
 
 # Simulate a failure in the container
-#HEALTHCHECK CMD ["ping", "-c", "1", "localhost"] || exit 
-HEALTHCHECK CMD ["touch", "/tmp/fake_file"] || exit 11
+#HEALTHCHECK CMD ["ping", "-c", "1", "localhost"] || exit 1 
+#HEALTHCHECK CMD ["touch", "/tmp/fake_file"] || exit 1
 
