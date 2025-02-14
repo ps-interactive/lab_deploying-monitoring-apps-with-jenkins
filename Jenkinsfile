@@ -47,7 +47,6 @@ pipeline {
                         // Restart the new container on port 80
                         echo "Starting new container ${newContainer} on port 80"
                         sh "docker stop ${newContainer} || true"
-			sh "docker rm ${newContainer} || true"
                         sh "docker run -d --name ${newContainer} -p 80:80 myapp:latest"
                     } else {
                         // Deploy directly to port 80 if no active container
@@ -58,17 +57,26 @@ pipeline {
             }
         }
         stage('Rollback') {
-           //  when{
-           //     expression { return currentBuild.result == 'FAILURE' }
-           // }
             steps {
                 script {
                     def failedContainer = sh(script: "docker ps --filter 'name=myapp-green' --filter 'name=myapp-blue' --format '{{.Names}}'", returnStdout: true).trim()
                     def rollbackContainer = failedContainer == 'myapp-green' ? 'myapp-blue' : 'myapp-green'
-                    echo "Rolling back to previous container: ${rollbackContainer}"
-                    sh "docker start ${rollbackContainer}"
-                    sh "docker stop ${failedContainer} || true"
-                    sh "docker rm ${failedContainer} || true"
+
+                    // Check if the new container is healthy
+                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://localhost", returnStdout: true).trim()
+
+                    if (statusCode != '200') {
+                        echo "New container ${failedContainer} is not healthy (status: ${statusCode}). Rolling back to previous container: ${rollbackContainer}"
+
+                        // Stop and remove the failed container
+                        sh "docker stop ${failedContainer} || true"
+                        sh "docker rm ${failedContainer} || true"
+
+                        // Redeploy the previous container
+                        sh "docker start ${rollbackContainer}"
+                    } else {
+                        echo "New container is healthy. No rollback needed."
+                    }
                 }
             }
         }
