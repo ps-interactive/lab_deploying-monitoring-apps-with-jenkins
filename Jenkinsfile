@@ -7,7 +7,8 @@ pipeline {
         stage('Prepare') {
             steps {
 		echo 'Backing up current myapp:latest as myapp:previous if it exists ...'
-		sh 'if docker images | grep -q "myapp:latest"; then docker tag myapp:latest myapp:previous; fi'
+		//sh 'if docker images | awk '{print $1":"$2}' | grep myapp:latest"; then docker tag myapp:latest myapp:previous; fi'
+		sh '''if docker images | awk \'{print $1":"$2}\' | grep -q myapp:latest; then docker tag myapp:latest myapp:previous; fi'''
 
                 echo 'Cleaning up old Docker images...'
                 sh 'docker system prune -af || true'
