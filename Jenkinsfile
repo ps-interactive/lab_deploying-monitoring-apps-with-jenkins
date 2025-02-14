@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        BUILD_STATUS = 'SUCCESS'
+    }
     stages {
         stage('Prepare') {
             steps {
@@ -58,7 +61,9 @@ pipeline {
                     // Check deployment status
                     def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
                     if (statusCode != '200') {
-                        error "Deployment failed with status: ${statusCode}. Triggering rollback."
+                        echo "Deployment failed with status: ${statusCode}. Setting build status to FAILURE."
+                        BUILD_STATUS = 'FAILURE'
+                        error "Triggering rollback."
                     } else {
                         echo "Deployment successful with status: ${statusCode}"
                     }
@@ -66,6 +71,9 @@ pipeline {
             }
         }
         stage('Rollback') {
+            when {
+                expression { BUILD_STATUS == 'FAILURE' }
+            }
             steps {
                 script {
                     def failedContainer = sh(script: "docker ps --filter 'name=myapp-green' --filter 'name=myapp-blue' --format '{{.Names}}'", returnStdout: true).trim()
