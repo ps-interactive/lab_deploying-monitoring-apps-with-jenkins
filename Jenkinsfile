@@ -33,7 +33,6 @@ pipeline {
                     }
                 }
             }
-        }
         stage('Rollback') {
             when {
                 expression { BUILD_STATUS == 'FAILURE' }
@@ -60,3 +59,4 @@ pipeline {
             }
         }
     }
+}
