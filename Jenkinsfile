@@ -5,6 +5,8 @@ pipeline {
             steps {
                 echo 'Cleaning up old Docker images...'
                 sh 'docker system prune -af || true'
+                echo 'Backing up current myapp:latest as myapp:previous if it exists...'
+                sh 'if docker images | grep -q "myapp:latest"; then docker tag myapp:latest myapp:previous; fi'
             }
         }
         stage('Test') {
@@ -16,8 +18,6 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh 'docker build -t myapp:latest .'
-                // Save the current image as the previous working image
-                sh 'docker tag myapp:latest myapp:previous'
             }
         }
         stage('Deploy') {
