@@ -24,9 +24,9 @@ pipeline {
             steps {
                 script {
                     // Determine active container and new container name
-                        sh "docker stop myapp"
-                        sh "docker rm myapp"
-                        sh "docker run -d --name myapp -p 80:80 myapp:latest"
+		        sh '''if docker ps -a | grep -q myapp; then docker stop myapp; fi'''
+		        sh '''if docker ps -a | grep -q myapp; then docker rm myapp; fi'''
+                        sh "docker run -d --name myapp -p 8000:80 myapp:latest"
                     }
                 }
             }
