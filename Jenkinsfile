@@ -30,7 +30,10 @@ pipeline {
             }
         stage('Rollback') {
             when {
-		previousStageResult(FAILURE) 
+		beforeAgent true
+                anyOf {
+                    failed()
+                }
             }
             steps {
                 script {
