@@ -1,12 +1,10 @@
 pipeline {
     agent any
-    environment {
-        BUILD_STATUS = 'SUCCESS'
-    }
     stages {
         stage('Prepare') {
             steps {
 		echo 'Backing up current myapp:latest as myapp:previous if it exists ...'
+		sh '''if docker images | awk \'{print $1":"$2}\' | grep -q myapp:previous; then docker rmi myapp:previous; fi'''
 		sh '''if docker images | awk \'{print $1":"$2}\' | grep -q myapp:latest; then docker tag myapp:latest myapp:previous; fi'''
 
             }
@@ -32,7 +30,7 @@ pipeline {
             }
         stage('Rollback') {
             when {
-                expression { BUILD_STATUS == 'FAILURE' }
+		previousStageResult(FAILURE) 
             }
             steps {
                 script {
