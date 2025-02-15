@@ -29,12 +29,6 @@ pipeline {
                 }
             }
         stage('Rollback') {
-            when {
-		beforeAgent true
-                anyOf {
-		    condition { previousStage('Deploy').result == 'FAILURE' }
-                }
-            }
             steps {
                 script {
                     echo "Rolling back to previous working image."
