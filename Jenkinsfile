@@ -28,27 +28,5 @@ pipeline {
                     }
                 }
             }
-        stage('Rollback') {
-            steps {
-                script {
-                    echo "Rolling back to previous working image."
-
-                    // Stop and remove the failed container
-                    sh "docker stop myapp || true"
-                    sh "docker rm myapp || true"
-
-                    // Redeploy the previous working image
-                    sh "docker run -d --name myapp -p 80:80 myapp:previous"
-
-                    // Validate rollback container
-                    def statusCode = sh(script: "curl -s -o /dev/null -w '%{http_code}' http://host.docker.internal", returnStdout: true).trim()
-                    if (statusCode != '200') {
-                        error "Rollback failed. Previous container myapp is not healthy (status: ${statusCode})."
-                    } else {
-                        echo "Rollback successful. myapp is running and healthy."
-                    }
-                }
-            }
-        }
     }
 }
