@@ -32,7 +32,7 @@ pipeline {
             when {
 		beforeAgent true
                 anyOf {
-                    failed()
+		    condition { previousStage('Deploy').result == 'FAILURE' }
                 }
             }
             steps {
